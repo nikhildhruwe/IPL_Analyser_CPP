@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -5,14 +6,14 @@
 
 using namespace std;
 
-class CSV { 
-    public:
-        vector<vector<string>> read_file(string file_name);
+class CSVOperations { 
         vector<string> split(const string& line, char delimiter);
-        void write_data(vector<string> header, string file_name, vector<vector<string>> data);
+    public:
+        vector<vector<string>> readFile(string file_name);
+        void writeData(vector<string> header, string file_name, vector<vector<string>> data);
 };
 
-vector<string> CSV::split(const string& line, char delimiter) {
+vector<string> CSVOperations:: split(const string& line, char delimiter) {
     vector<string> tokens;
     string token;
     istringstream tokenStream(line);
@@ -23,7 +24,7 @@ vector<string> CSV::split(const string& line, char delimiter) {
     return tokens;
 }
 
-vector<vector<string>> CSV::read_file(string file_name) {
+vector<vector<string>> CSVOperations:: readFile(string file_name) {
     fstream reader;
     reader.open(file_name, ios::in); 
     string line, word;
@@ -43,7 +44,7 @@ vector<vector<string>> CSV::read_file(string file_name) {
     return csv_data;
 }
 
-void CSV::write_data(vector<string> header, string file_name, vector<vector<string>> data) {
+void CSVOperations:: writeData(vector<string> header, string file_name, vector<vector<string>> data) {
     fstream writer;
     writer.open(file_name, ios::out | ios::app);
     
