@@ -6,14 +6,17 @@
 #include "../libraries/csv.h"
 using namespace std;
 
+enum SortType{
+            AVERAGE = 1, STRIKE_RATE, SIX_FOUR
+        }; 
+
 class IPLAnalyser{
     private :
         vector<vector<string>> readCSVData(string);
-    public :  
-      vector<IPLMostRuns> loadCSVData(string);
-      vector<IPLMostRuns> getBatsmanWithHighestAverage(vector<IPLMostRuns>);
-      vector<IPLMostRuns> getBatsmanWithTopStrikeRate(vector<IPLMostRuns>);
-      
+    public :   
+       vector<IPLMostRuns> loadCSVData(string);
+       list<IPLMostRuns> getSortedList(vector<IPLMostRuns>, SortType);
+       list<IPLMostRuns> getBatsmanWithTopStrikeRate(vector<IPLMostRuns>);    
 };
 
 vector<vector<string>> IPLAnalyser :: readCSVData(string filePath){
@@ -38,29 +41,24 @@ vector<IPLMostRuns> IPLAnalyser ::loadCSVData(string filePath){
    return batsmanList;
 }
 
-vector<IPLMostRuns> IPLAnalyser ::getBatsmanWithHighestAverage(vector<IPLMostRuns> batsmanList){
-    vector<IPLMostRuns> sortedList = batsmanList;
+list<IPLMostRuns> IPLAnalyser ::getSortedList(vector<IPLMostRuns> batsmanList, SortType sortType){
+    list<IPLMostRuns> sortedList(batsmanList.begin(), batsmanList.end());
 
-     for (int i = 0; i < sortedList.size()- 1; i++ ){
-        for (int j = 0; j < sortedList.size() - i - 1; j++){
-            if ( sortedList[j].average < sortedList[j + 1].average)
-                swap(sortedList[j], sortedList[j+1]);
-        }
+    switch (sortType){
+        case AVERAGE :
+            sortedList.sort([](const IPLMostRuns firstBatsman, const IPLMostRuns secondBatsman)
+            {return  firstBatsman.average > secondBatsman.average; });
+            break;
+        case STRIKE_RATE :
+            sortedList.sort([](const IPLMostRuns firstBatsman, const IPLMostRuns secondBatsman)
+            {return  firstBatsman.strikeRate > secondBatsman.strikeRate;});
+            break;
+        case SIX_FOUR :
+             sortedList.sort([](const IPLMostRuns firstBatsman, const IPLMostRuns secondBatsman)
+            {return  firstBatsman.sixes + firstBatsman.fours > secondBatsman.sixes + secondBatsman.fours;});
+            break;
+
     }
-
-    return sortedList;
-}
-
-vector<IPLMostRuns> IPLAnalyser ::getBatsmanWithTopStrikeRate(vector<IPLMostRuns> batsmanList){
-    vector<IPLMostRuns> sortedList = batsmanList;
-
-     for (int i = 0; i < sortedList.size()- 1; i++ ){
-        for (int j = 0; j < sortedList.size() - i - 1; j++){
-            if ( sortedList[j].strikeRate < sortedList[j + 1].strikeRate)
-                swap(sortedList[j], sortedList[j+1]);
-        }
-    }
-
     return sortedList;
 }
 

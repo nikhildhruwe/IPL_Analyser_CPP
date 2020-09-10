@@ -11,32 +11,64 @@ class IPLController{
         IPLAnalyser iplAnalyserObj;
         vector<IPLMostRuns> batsmanDetailsList;
     public :
-        IPLController(){
-            batsmanDetailsList = iplAnalyserObj.loadCSVData(MOST_RUNS_CSV_FILE_PATH);
-        }
-
-        void displayWelcomeMessage(){
-            iplDisplayObj.displayWelcomeMessage();
-        }
-
-        void displayBatsmanWithHighestAverage(){
-            vector<IPLMostRuns> batsmanList =  iplAnalyserObj.getBatsmanWithHighestAverage(batsmanDetailsList);
-            string message = "Top BAtting Average : ";
-            iplDisplayObj.displayBatsmanDetails(batsmanList, message);
-        }
-
-        void displayBatsmanWithTopStrikingRates(){
-            vector<IPLMostRuns> batsmanList =  iplAnalyserObj.getBatsmanWithTopStrikeRate(batsmanDetailsList);
-            string message = "Top Strike Rate :";
-            iplDisplayObj.displayBatsmanDetails(batsmanList, message);
-        }
+        IPLController();
+        void displayWelcomeMessage();
+        void displayOptionsToSort();
 };
+
+IPLController ::IPLController(){
+    batsmanDetailsList = iplAnalyserObj.loadCSVData(MOST_RUNS_CSV_FILE_PATH);
+}
+
+void IPLController ::displayWelcomeMessage(){
+    iplDisplayObj.displayWelcomeMessage();
+}
+
+void IPLController ::displayOptionsToSort(){
+    bool status = true;
+    list<IPLMostRuns> batsmanList;
+    while (status){
+        int choice = iplDisplayObj.getSortChoice();
+        switch (choice){
+        case  AVERAGE :
+            {
+                system("clear");
+                batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, AVERAGE);
+                string message = "Top BAtting Average : ";
+                iplDisplayObj.displayBatsmanDetails(batsmanList, message);
+            }
+            break;
+        case STRIKE_RATE :
+            {
+                system("clear");
+                batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, STRIKE_RATE);
+                string message = "Top BAtting Average : ";
+                iplDisplayObj.displayBatsmanDetails(batsmanList, message);
+
+            } 
+            break;
+        case SIX_FOUR :
+            {
+                system("clear");
+                batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, SIX_FOUR);
+                string message = "Top BAtting Average : ";
+                iplDisplayObj.displayBatsmanDetails(batsmanList, message);
+            }
+            break;
+        case 4 :
+            status = false;
+            break;
+        default:
+            cout << "Invalid choice" << endl;
+            break;
+        }
+    }
+}
 
 int main(){
    IPLController controller;
    controller.displayWelcomeMessage();
-   controller.displayBatsmanWithHighestAverage();
-   controller.displayBatsmanWithTopStrikingRates();
+   controller.displayOptionsToSort();
 
    return 0;
 }
