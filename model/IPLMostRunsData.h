@@ -6,11 +6,11 @@ class IPLMostRuns{
     public :
         string playerName, highScore;
         int matches, innings, runs, hundreds, fifties, fours, sixes;
-        double average, strikRate;
+        double average, strikeRate;
     
         IPLMostRuns(string playerName, double average, double strikeRate){
             this->playerName = playerName;
             this->average = average;
-            this->strikRate = strikRate;
+            this->strikeRate = strikeRate;
     }
 };

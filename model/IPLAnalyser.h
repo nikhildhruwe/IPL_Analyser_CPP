@@ -11,10 +11,10 @@ class IPLAnalyser{
         vector<vector<string>> readCSVData(string);
     public :  
       vector<IPLMostRuns> loadCSVData(string);
-      IPLMostRuns getBatsmanWithHighestAverage(vector<IPLMostRuns>);
+      vector<IPLMostRuns> getBatsmanWithHighestAverage(vector<IPLMostRuns>);
+      vector<IPLMostRuns> getBatsmanWithTopStrikeRate(vector<IPLMostRuns>);
+      
 };
-
-#include "IPLAnalyser.h"
 
 vector<vector<string>> IPLAnalyser :: readCSVData(string filePath){
     CSVOperations csvObj;
@@ -38,7 +38,7 @@ vector<IPLMostRuns> IPLAnalyser ::loadCSVData(string filePath){
    return batsmanList;
 }
 
-IPLMostRuns IPLAnalyser ::getBatsmanWithHighestAverage(vector<IPLMostRuns> batsmanList){
+vector<IPLMostRuns> IPLAnalyser ::getBatsmanWithHighestAverage(vector<IPLMostRuns> batsmanList){
     vector<IPLMostRuns> sortedList = batsmanList;
 
      for (int i = 0; i < sortedList.size()- 1; i++ ){
@@ -48,6 +48,19 @@ IPLMostRuns IPLAnalyser ::getBatsmanWithHighestAverage(vector<IPLMostRuns> batsm
         }
     }
 
-    return sortedList[0];
+    return sortedList;
+}
+
+vector<IPLMostRuns> IPLAnalyser ::getBatsmanWithTopStrikeRate(vector<IPLMostRuns> batsmanList){
+    vector<IPLMostRuns> sortedList = batsmanList;
+
+     for (int i = 0; i < sortedList.size()- 1; i++ ){
+        for (int j = 0; j < sortedList.size() - i - 1; j++){
+            if ( sortedList[j].strikeRate < sortedList[j + 1].strikeRate)
+                swap(sortedList[j], sortedList[j+1]);
+        }
+    }
+
+    return sortedList;
 }
 
