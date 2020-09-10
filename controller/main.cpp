@@ -34,7 +34,7 @@ void IPLController ::displayOptionsToSort(){
             {
                 system("clear");
                 batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, AVERAGE);
-                string message = "Top BAtting Average : ";
+                string message = "Top Batting Average : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
@@ -42,7 +42,7 @@ void IPLController ::displayOptionsToSort(){
             {
                 system("clear");
                 batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, STRIKE_RATE);
-                string message = "Top BAtting Average : ";
+                string message = "Top strike rate : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
 
             } 
@@ -51,7 +51,7 @@ void IPLController ::displayOptionsToSort(){
             {
                 system("clear");
                 batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, SIX_FOUR);
-                string message = "Top BAtting Average : ";
+                string message = "Highest 6s and 4s : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
@@ -59,7 +59,7 @@ void IPLController ::displayOptionsToSort(){
             {
                 system("clear");
                 batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, STRIKE_RATE_AND_SIX_FOUR);
-                string message = "Top BAtting Average : ";
+                string message = "Top strike rate along with highest 6s and 4s.: ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
@@ -67,7 +67,7 @@ void IPLController ::displayOptionsToSort(){
             {
                 system("clear");
                 batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, AVERAGE_AND_STRIKE_RATE);
-                string message = "Top BAtting Average : ";
+                string message = "Top average along with strike rate: ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
