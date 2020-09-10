@@ -55,7 +55,15 @@ void IPLController ::displayOptionsToSort(){
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
-        case 4 :
+        case STRIKE_RATE_AND_SIX_FOUR :
+            {
+                system("clear");
+                batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, SIX_FOUR);
+                string message = "Top BAtting Average : ";
+                iplDisplayObj.displayBatsmanDetails(batsmanList, message);
+            }
+            break;
+        case 5 :
             status = false;
             break;
         default:

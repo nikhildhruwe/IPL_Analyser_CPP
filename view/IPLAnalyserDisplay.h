@@ -27,7 +27,7 @@ void IPLAnalyserDisplay::displayBatsmanDetails(list<IPLMostRuns> batsmanList, st
 int IPLAnalyserDisplay ::getSortChoice(){
     int choice;
     cout << " Top Players in following stats :" << endl;
-    cout << "1.Highest average.\n2.Highest strike rate.\n3.Highest 6s and 4s.\n4.Exit" << endl;
+    cout << "1.Highest average.\n2.Highest strike rate.\n3.Highest 6s and 4s.\n4.Best strike rate with 6s and 4s.\n5.Exit" << endl;
     cout << "Select choice : ";
     cin >> choice;
     return choice;

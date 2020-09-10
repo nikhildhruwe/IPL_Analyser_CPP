@@ -7,7 +7,7 @@
 using namespace std;
 
 enum SortType{
-            AVERAGE = 1, STRIKE_RATE, SIX_FOUR
+            AVERAGE = 1, STRIKE_RATE, SIX_FOUR, STRIKE_RATE_AND_SIX_FOUR
         }; 
 
 class IPLAnalyser{
@@ -57,8 +57,13 @@ list<IPLMostRuns> IPLAnalyser ::getSortedList(vector<IPLMostRuns> batsmanList, S
              sortedList.sort([](const IPLMostRuns firstBatsman, const IPLMostRuns secondBatsman)
             {return  firstBatsman.sixes + firstBatsman.fours > secondBatsman.sixes + secondBatsman.fours;});
             break;
-
+        case STRIKE_RATE_AND_SIX_FOUR :
+            sortedList.sort([](const IPLMostRuns firstBatsman, const IPLMostRuns secondBatsman)
+            {return  (firstBatsman.strikeRate> secondBatsman.strikeRate && 
+                    firstBatsman.sixes + firstBatsman.fours > secondBatsman.sixes + secondBatsman.fours);});
+            break;
     }
+    
     return sortedList;
 }
 
