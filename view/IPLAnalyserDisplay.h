@@ -9,26 +9,36 @@ class IPLAnalyserDisplay{
     public:
     void displayWelcomeMessage();
     void displayBatsmanDetails(list<IPLMostRuns>, string);
+    void displayBowlersDetails(list<IPLMostWickets>, string);
     int getSortChoice();
 };
 
-void IPLAnalyserDisplay::displayWelcomeMessage(){
+void IPLAnalyserDisplay ::displayWelcomeMessage(){
     cout << "\n\tWelcome to IPL Analyser program." << endl;
 }
 
-void IPLAnalyserDisplay::displayBatsmanDetails(list<IPLMostRuns> batsmanList, string message){
+void IPLAnalyserDisplay ::displayBatsmanDetails(list<IPLMostRuns> playerList, string message){
     displayMessage(message);
-    auto batsman = batsmanList.begin();
-    for (int i = 0; i < 3; i++, batsman++)
-        cout << "Player Name : " << batsman->playerName << "\nAverage     : "
-        << batsman->average << "\nStrike Rate : " << batsman->strikeRate << "\n" << endl;
+    auto player = playerList.begin();
+    for (int i = 0; i < 3; i++, player++)
+        cout << "Player Name : " << player->playerName << "\nAverage     : "
+        << player->average << "\nStrike Rate : " << player->strikeRate << "\n" << endl;
+}
+
+void IPLAnalyserDisplay ::displayBowlersDetails(list<IPLMostWickets> playerList, string message){
+    displayMessage(message);
+    auto player = playerList.begin();
+    for (int i = 0; i < 3; i++, player++)
+        cout << "Player Name : " << player->playerName << "\nAverage     : "
+        << player->average << "\nStrike Rate : " << player->strikeRate << "\n" << endl;
+
 }
 
 int IPLAnalyserDisplay ::getSortChoice(){
     int choice;
-    cout << " IPL 2019 Top Players in following stats :" << endl;
-    cout << "1.Highest average.\n2.Highest strike rate.\n3.Highest 6s and 4s.\n4.Best strike rate with highest 6s and 4s."
-    "\n5.Best average along with highest strike rate.\n6.Maximum runs with best average.\n7.Exit" << endl;
+    cout << " IPL 2019 Top Players with following stats :" << endl;
+    cout << "1.Top batting average.\n2.Highest strike rate of batsman.\n3.Highest 6s and 4s.\n4.Best strike rate with highest 6s and 4s."
+    "\n5.Best average along with highest strike rate.\n6.Maximum runs with best average.\n7.Top Bowing average.\n8.Exit" << endl;
     cout << "Select choice : ";
     cin >> choice;
     return choice;

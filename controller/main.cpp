@@ -4,12 +4,14 @@
 using namespace std;
 
 const string MOST_RUNS_CSV_FILE_PATH = "../resources/IPL2019FactsheetMostRuns.csv";
+const string MOST_WICKETS_CSV_FILE_PATH = "../resources/IPL2019FactsheetMostWkts.csv";
 
 class IPLController{
     private :
         IPLAnalyserDisplay iplDisplayObj;
         IPLAnalyser iplAnalyserObj;
         vector<IPLMostRuns> batsmanDetailsList;
+        vector<IPLMostWickets> bowlersDetailsList;
     public :
         IPLController();
         void displayWelcomeMessage();
@@ -17,7 +19,8 @@ class IPLController{
 };
 
 IPLController ::IPLController(){
-    batsmanDetailsList = iplAnalyserObj.loadCSVData(MOST_RUNS_CSV_FILE_PATH);
+    batsmanDetailsList = iplAnalyserObj.loadBatsmanCSVData(MOST_RUNS_CSV_FILE_PATH);
+    bowlersDetailsList = iplAnalyserObj.loadBowlersCSVData(MOST_WICKETS_CSV_FILE_PATH);
 }
 
 void IPLController ::displayWelcomeMessage(){
@@ -27,54 +30,61 @@ void IPLController ::displayWelcomeMessage(){
 void IPLController ::displayOptionsToSort(){
     bool status = true;
     list<IPLMostRuns> batsmanList;
+    list<IPLMostWickets> bowlersList;
     while (status){
         int choice = iplDisplayObj.getSortChoice();
         system("clear");
         switch (choice){
-        case  AVERAGE :
+        case  BATSMAN_AVG :
             {
-                batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, AVERAGE);
+                batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, BATSMAN_AVG);
                 string message = "Top Batting Average : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
         case STRIKE_RATE :
             {
-                batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, STRIKE_RATE);
+                batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, STRIKE_RATE);
                 string message = "Top strike rate : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
-
             } 
             break;
         case SIX_FOUR :
             {
-                batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, SIX_FOUR);
+                batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, SIX_FOUR);
                 string message = "Highest 6s and 4s : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
         case STRIKE_RATE_AND_SIX_FOUR :
             {
-                batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, STRIKE_RATE_AND_SIX_FOUR);
+                batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, STRIKE_RATE_AND_SIX_FOUR);
                 string message = "Top strike rate along with highest 6s and 4s : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
         case AVERAGE_AND_STRIKE_RATE :
             {
-                batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, AVERAGE_AND_STRIKE_RATE);
+                batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, AVERAGE_AND_STRIKE_RATE);
                 string message = "Top average along with strike rate : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
         case MAX_RUNS_AND_AVERAGE :
             {
-                batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, MAX_RUNS_AND_AVERAGE);
+                batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, MAX_RUNS_AND_AVERAGE);
                 string message = "Maximum runs with best average : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
-        case 7 :
+        case BOWLING_AVG :
+             {
+                bowlersList =  iplAnalyserObj.getBowlersSortedList(bowlersDetailsList, BOWLING_AVG);
+                string message = "Top Bowling Average : ";
+                iplDisplayObj.displayBowlersDetails(bowlersList, message);
+            }
+            break;
+        case 8 :
             status = false;
             break;
         default:
