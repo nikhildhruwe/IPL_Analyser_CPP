@@ -8,8 +8,8 @@
 using namespace std;
 
 enum SortType{
-    BATSMAN_AVG = 1, STRIKE_RATE, SIX_FOUR, STRIKE_RATE_AND_SIX_FOUR, AVERAGE_AND_STRIKE_RATE,
-    MAX_RUNS_AND_AVERAGE, BOWLING_AVG
+    BATSMAN_AVG = 1, BATTING_STRIKE_RATE, SIX_FOUR, STRIKE_RATE_AND_SIX_FOUR, AVERAGE_AND_STRIKE_RATE,
+    MAX_RUNS_AND_AVERAGE, BOWLING_AVG, BOWLING_STRIKE_RATE
 }; 
 
 class IPLAnalyser{
@@ -70,7 +70,7 @@ list<IPLMostRuns> IPLAnalyser ::getBatsmanSortedList(vector<IPLMostRuns> batsman
             sortedList.sort([](const IPLMostRuns firstBatsman, const IPLMostRuns secondBatsman)
             {return  firstBatsman.average > secondBatsman.average; });
             break;
-        case STRIKE_RATE :
+        case BATTING_STRIKE_RATE :
             sortedList.sort([](const IPLMostRuns firstBatsman, const IPLMostRuns secondBatsman)
             {return  firstBatsman.strikeRate > secondBatsman.strikeRate;});
             break;
@@ -107,6 +107,13 @@ list<IPLMostWickets> IPLAnalyser ::getBowlersSortedList(vector<IPLMostWickets> b
             {if ( firstBowler.average == 0 )
                 return false;
                 return firstBowler.average < secondBowler.average; });
+            break;
+        break;
+    case BOWLING_STRIKE_RATE :
+            sortedList.sort([](const IPLMostWickets firstBowler, const IPLMostWickets secondBowler)
+            {if ( firstBowler.average == 0 )
+                return false;
+                return firstBowler.strikeRate < secondBowler.strikeRate; });
             break;
         break;
     }

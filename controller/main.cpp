@@ -42,9 +42,9 @@ void IPLController ::displayOptionsToSort(){
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
-        case STRIKE_RATE :
+        case BATTING_STRIKE_RATE :
             {
-                batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, STRIKE_RATE);
+                batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, BATTING_STRIKE_RATE);
                 string message = "Top strike rate : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             } 
@@ -84,7 +84,14 @@ void IPLController ::displayOptionsToSort(){
                 iplDisplayObj.displayBowlersDetails(bowlersList, message);
             }
             break;
-        case 8 :
+        case BOWLING_STRIKE_RATE :
+             {
+                bowlersList =  iplAnalyserObj.getBowlersSortedList(bowlersDetailsList, BOWLING_STRIKE_RATE);
+                string message = "Top Bowling Strike Rate : ";
+                iplDisplayObj.displayBowlersDetails(bowlersList, message);
+            }
+            break;
+        case 9 :
             status = false;
             break;
         default:
