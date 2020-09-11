@@ -12,7 +12,7 @@ enum SortType{
     BATSMAN_AVG = 1, BATTING_STRIKE_RATE, SIX_FOUR, STRIKE_RATE_AND_SIX_FOUR, AVERAGE_AND_STRIKE_RATE,
     MAX_RUNS_AND_AVERAGE, BOWLING_AVG, BOWLING_STRIKE_RATE, BOWLING_ECONOMY_RATE, 
     STRIKE_RATE_5W_AND_4W, BOWLING_AVG_AND_STRIKE_RATE, BOWLING_WICKET_AND_AVG,
-    BATTING_AND_BOWLING_AVG, ALLROUNDER_RUNS_AND_WICKETS
+    BATTING_AND_BOWLING_AVG, ALLROUNDER_RUNS_AND_WICKETS, HUNDEREDS_AND_AVG, ZERO_100S_50S_AND_AVG
 }; 
 
 class IPLAnalyser{
@@ -99,6 +99,11 @@ list<IPLMostRuns> IPLAnalyser ::getBatsmanSortedList(vector<IPLMostRuns> batsman
             {return  (firstBatsman.runs > secondBatsman.runs && 
                     firstBatsman.average > secondBatsman.average);});
             break;
+        case HUNDEREDS_AND_AVG :
+             sortedList.sort([](const IPLMostRuns firstBatsman, const IPLMostRuns secondBatsman)
+            {return  (firstBatsman.hundreds > secondBatsman.hundreds && 
+                    firstBatsman.average > secondBatsman.average);});
+            break;
     }
     
     return sortedList;
@@ -173,9 +178,10 @@ list<IPLAllRounder> IPLAnalyser ::getAllRounderSortedList(vector<IPLAllRounder> 
     switch (sortType){
         case BATTING_AND_BOWLING_AVG :
             sortedList.sort([](const IPLAllRounder firstPlayer, const IPLAllRounder secondPlayer)
-            {return ((firstPlayer.bowlingAverage != 0 && secondPlayer.bowlingAverage != 0)
-             ? firstPlayer.bowlingAverage < secondPlayer.bowlingAverage : bool()) &&
-                firstPlayer.battingAverage > secondPlayer.battingAverage; });
+            { if (firstPlayer.bowlingAverage == 0 || secondPlayer.bowlingAverage == 0)
+                return false;
+             return ((firstPlayer.bowlingAverage < secondPlayer.bowlingAverage) &&
+                (firstPlayer.battingAverage > secondPlayer.battingAverage)); });
             break;
         case ALLROUNDER_RUNS_AND_WICKETS :
             sortedList.sort([](const IPLAllRounder firstPlayer, const IPLAllRounder secondPlayer)

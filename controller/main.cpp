@@ -128,6 +128,7 @@ void IPLController ::displayOptionsToSort(){
                 string message = "Top Batting and Bowling Averages : ";
                 iplDisplayObj.displayAllRoundersDetails(allRounderSortedList, message);
             }
+            break;
         case ALLROUNDER_RUNS_AND_WICKETS :
             {
                 allRounderSortedList = iplAnalyserObj.getAllRounderSortedList(allRounderList, ALLROUNDER_RUNS_AND_WICKETS);
@@ -135,7 +136,14 @@ void IPLController ::displayOptionsToSort(){
                 iplDisplayObj.displayAllRoundersDetails(allRounderSortedList, message);
             }
             break;
-        case 15 :
+        case HUNDEREDS_AND_AVG :
+            {
+                batsmanList = iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, HUNDEREDS_AND_AVG);
+                string message = "Top players with highest 100s and average : ";
+                iplDisplayObj.displayBatsmanDetails(batsmanList, message);
+            }
+            break;
+        case 16 :
             status = false;
             break;
         default:
