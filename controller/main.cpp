@@ -91,7 +91,14 @@ void IPLController ::displayOptionsToSort(){
                 iplDisplayObj.displayBowlersDetails(bowlersList, message);
             }
             break;
-        case 9 :
+        case BOWLING_ECONOMY_RATE :
+             {
+                bowlersList =  iplAnalyserObj.getBowlersSortedList(bowlersDetailsList, BOWLING_ECONOMY_RATE);
+                string message = "Top Bowling Strike Rate : ";
+                iplDisplayObj.displayBowlersDetails(bowlersList, message);
+            }
+            break;
+        case 10 :
             status = false;
             break;
         default:
