@@ -23,7 +23,8 @@ void IPLAnalyserDisplay ::displayBatsmanDetails(list<IPLMostRuns> playerList, st
     auto player = playerList.begin();
     for (int i = 0; i < 3; i++, player++)
         cout << "Player Name : " << player->playerName << "\nAverage     : "
-        << player->average << "\nStrike Rate : " << player->strikeRate <<  "\n100s        : " << player->hundreds << "\n" << endl;
+        << player->average << "\nStrike Rate : " << player->strikeRate <<  "\n100s        : " 
+        << player->hundreds << "\n50s         : "  << player->fifties << "\n" << endl;
 }
 
 void IPLAnalyserDisplay ::displayBowlersDetails(list<IPLMostWickets> playerList, string message){
@@ -52,7 +53,8 @@ int IPLAnalyserDisplay ::getSortChoice(){
     "\n5.Best average along with highest strike rate.\n6.Maximum runs with best average.\n7.Top Bowling average."
     "\n8.Top bowling strike rate.\n9.Top bowling economy rate.\n10.Best economy with highest 5 wickets and 4 wickets."
     "\n11.Best bowling average with strike rate.\n12.Best Bowlers Wicket and average."
-    "\n13.Batting and Bowling Averages.\n14.Highest Runs and Wickets.\n15.Batsman with highest 100s and best average\n16.Exit." << endl;
+    "\n13.Batting and Bowling Averages.\n14.Highest Runs and Wickets.\n15.Batsman with highest 100s and best average."
+    "\n16.Batsman with zero 100s and 50s but higest average.\n17.Exit." << endl;
     cout << "Select choice : ";
     cin >> choice;
     return choice;

@@ -143,7 +143,14 @@ void IPLController ::displayOptionsToSort(){
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
-        case 16 :
+        case ZERO_100S_50S_AND_AVG :
+            {
+                batsmanList = iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, ZERO_100S_50S_AND_AVG);
+                string message = "Top players with zero 100s and 50s but best average : ";
+                iplDisplayObj.displayBatsmanDetails(batsmanList, message);
+            }
+            break;
+        case 17 :
             status = false;
             break;
         default:

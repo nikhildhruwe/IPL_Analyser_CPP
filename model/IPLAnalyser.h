@@ -100,9 +100,20 @@ list<IPLMostRuns> IPLAnalyser ::getBatsmanSortedList(vector<IPLMostRuns> batsman
                     firstBatsman.average > secondBatsman.average);});
             break;
         case HUNDEREDS_AND_AVG :
-             sortedList.sort([](const IPLMostRuns firstBatsman, const IPLMostRuns secondBatsman)
+            sortedList.sort([](const IPLMostRuns firstBatsman, const IPLMostRuns secondBatsman)
             {return  (firstBatsman.hundreds > secondBatsman.hundreds && 
                     firstBatsman.average > secondBatsman.average);});
+            break;
+        case ZERO_100S_50S_AND_AVG :
+            list<IPLMostRuns> averageList;
+            for (auto batsman = sortedList.begin(); batsman != sortedList.end(); batsman++ ){
+                if ( batsman->hundreds == 0 && batsman->fifties == 0 ){
+                    averageList.push_back(*batsman);
+                }
+            }
+            sortedList = averageList;
+            sortedList.sort([](const IPLMostRuns firstBatsman, const IPLMostRuns secondBatsman)
+            { return  firstBatsman.average > secondBatsman.average ;});
             break;
     }
     
