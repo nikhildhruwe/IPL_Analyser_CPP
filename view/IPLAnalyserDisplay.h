@@ -40,7 +40,7 @@ int IPLAnalyserDisplay ::getSortChoice(){
     cout << "1.Top batting average.\n2.Highest strike rate of batsman.\n3.Highest 6s and 4s.\n4.Best strike rate with highest 6s and 4s."
     "\n5.Best average along with highest strike rate.\n6.Maximum runs with best average.\n7.Top Bowling average."
     "\n8.Top bowling strike rate.\n9.Top bowling economy rate.\n10.Best economy with highest 5 wickets and 4 wickets."
-    "\n11.Best bowling average with strike rate.\n12.Exit." << endl;
+    "\n11.Best bowling average with strike rate.\n12.Best Bowlers Wicket and average.\n13.Exit." << endl;
     cout << "Select choice : ";
     cin >> choice;
     return choice;

@@ -112,7 +112,14 @@ void IPLController ::displayOptionsToSort(){
                 iplDisplayObj.displayBowlersDetails(bowlersList, message);
             }
             break;
-        case 12 :
+        case BOWLING_WICKET_AND_AVG :
+             {
+                bowlersList =  iplAnalyserObj.getBowlersSortedList(bowlersDetailsList, BOWLING_WICKET_AND_AVG);
+                string message = "Top Bowling Wickets and Average : ";
+                iplDisplayObj.displayBowlersDetails(bowlersList, message);
+            }
+            break;
+        case 13 :
             status = false;
             break;
         default:

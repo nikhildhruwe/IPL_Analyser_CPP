@@ -10,7 +10,7 @@ using namespace std;
 enum SortType{
     BATSMAN_AVG = 1, BATTING_STRIKE_RATE, SIX_FOUR, STRIKE_RATE_AND_SIX_FOUR, AVERAGE_AND_STRIKE_RATE,
     MAX_RUNS_AND_AVERAGE, BOWLING_AVG, BOWLING_STRIKE_RATE, BOWLING_ECONOMY_RATE, 
-    STRIKE_RATE_5W_AND_4W, BOWLING_AVG_AND_STRIKE_RATE
+    STRIKE_RATE_5W_AND_4W, BOWLING_AVG_AND_STRIKE_RATE, BOWLING_WICKET_AND_AVG
 }; 
 
 class IPLAnalyser{
@@ -133,6 +133,12 @@ list<IPLMostWickets> IPLAnalyser ::getBowlersSortedList(vector<IPLMostWickets> b
             {if ( firstBowler.average == 0 || firstBowler.strikeRate == 0 )
                return false;
             return (firstBowler.average  < secondBowler.average) && (firstBowler.strikeRate < secondBowler.strikeRate); });
+            break;
+    case BOWLING_WICKET_AND_AVG :
+            sortedList.sort([](const IPLMostWickets firstBowler, const IPLMostWickets secondBowler)
+            {if ( firstBowler.average == 0)
+               return false;
+            return (firstBowler.wickets  > secondBowler.wickets) && (firstBowler.average < secondBowler.average); });
             break;
     }
     return sortedList;

@@ -11,5 +11,5 @@ class IPLMostRuns{
             this->playerName = playerName;
             this->average = average;
             this->strikeRate = strikeRate;
-    }
+        }
 };
