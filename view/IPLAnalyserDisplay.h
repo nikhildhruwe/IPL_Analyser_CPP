@@ -28,7 +28,7 @@ int IPLAnalyserDisplay ::getSortChoice(){
     int choice;
     cout << " IPL 2019 Top Players in following stats :" << endl;
     cout << "1.Highest average.\n2.Highest strike rate.\n3.Highest 6s and 4s.\n4.Best strike rate with highest 6s and 4s."
-    "\n5.Best average along with highest strike rate.\n6.Exit" << endl;
+    "\n5.Best average along with highest strike rate.\n6.Maximum runs with best average.\n7.Exit" << endl;
     cout << "Select choice : ";
     cin >> choice;
     return choice;

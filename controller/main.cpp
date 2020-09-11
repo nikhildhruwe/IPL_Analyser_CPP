@@ -29,10 +29,10 @@ void IPLController ::displayOptionsToSort(){
     list<IPLMostRuns> batsmanList;
     while (status){
         int choice = iplDisplayObj.getSortChoice();
+        system("clear");
         switch (choice){
         case  AVERAGE :
             {
-                system("clear");
                 batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, AVERAGE);
                 string message = "Top Batting Average : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
@@ -40,7 +40,6 @@ void IPLController ::displayOptionsToSort(){
             break;
         case STRIKE_RATE :
             {
-                system("clear");
                 batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, STRIKE_RATE);
                 string message = "Top strike rate : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
@@ -49,7 +48,6 @@ void IPLController ::displayOptionsToSort(){
             break;
         case SIX_FOUR :
             {
-                system("clear");
                 batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, SIX_FOUR);
                 string message = "Highest 6s and 4s : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
@@ -57,21 +55,26 @@ void IPLController ::displayOptionsToSort(){
             break;
         case STRIKE_RATE_AND_SIX_FOUR :
             {
-                system("clear");
                 batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, STRIKE_RATE_AND_SIX_FOUR);
-                string message = "Top strike rate along with highest 6s and 4s.: ";
+                string message = "Top strike rate along with highest 6s and 4s : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
-         case AVERAGE_AND_STRIKE_RATE :
+        case AVERAGE_AND_STRIKE_RATE :
             {
-                system("clear");
                 batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, AVERAGE_AND_STRIKE_RATE);
-                string message = "Top average along with strike rate: ";
+                string message = "Top average along with strike rate : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
-        case 6 :
+        case MAX_RUNS_AND_AVERAGE :
+            {
+                batsmanList =  iplAnalyserObj.getSortedList(batsmanDetailsList, MAX_RUNS_AND_AVERAGE);
+                string message = "Maximum runs with best average : ";
+                iplDisplayObj.displayBatsmanDetails(batsmanList, message);
+            }
+            break;
+        case 7 :
             status = false;
             break;
         default:
