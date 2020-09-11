@@ -12,6 +12,7 @@ class IPLController{
         IPLAnalyser iplAnalyserObj;
         vector<IPLMostRuns> batsmanDetailsList;
         vector<IPLMostWickets> bowlersDetailsList;
+        vector<IPLAllRounder> allRounderList;
     public :
         IPLController();
         void displayWelcomeMessage();
@@ -21,6 +22,7 @@ class IPLController{
 IPLController ::IPLController(){
     batsmanDetailsList = iplAnalyserObj.loadBatsmanCSVData(MOST_RUNS_CSV_FILE_PATH);
     bowlersDetailsList = iplAnalyserObj.loadBowlersCSVData(MOST_WICKETS_CSV_FILE_PATH);
+    allRounderList = iplAnalyserObj.loadAllRounderData(batsmanDetailsList, bowlersDetailsList);
 }
 
 void IPLController ::displayWelcomeMessage(){
@@ -31,6 +33,7 @@ void IPLController ::displayOptionsToSort(){
     bool status = true;
     list<IPLMostRuns> batsmanList;
     list<IPLMostWickets> bowlersList;
+    list<IPLAllRounder> allRounderSortedList;
     while (status){
         int choice = iplDisplayObj.getSortChoice();
         system("clear");
@@ -119,7 +122,13 @@ void IPLController ::displayOptionsToSort(){
                 iplDisplayObj.displayBowlersDetails(bowlersList, message);
             }
             break;
-        case 13 :
+        case BATTING_AND_BOWLING_AVG :
+            {
+                allRounderSortedList = iplAnalyserObj.getAllRounderSortedList(allRounderList, BATTING_AND_BOWLING_AVG);
+                string message = "Top Batting and Bowling Averages : ";
+                iplDisplayObj.displayAllRoundersDetails(allRounderSortedList, message);
+            }
+        case 14 :
             status = false;
             break;
         default:

@@ -6,5 +6,5 @@ class IPLMostWickets{
     public : 
         string playerName;
         double average, strikeRate, economyRates;
-        int fourWickets, fiveWickets, wickets;
+        int fourWickets, fiveWickets, wickets, runs;
 };

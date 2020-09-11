@@ -4,13 +4,15 @@
 #include <list>
 #include "IPLMostRunsData.h"
 #include "IPLMostWicketsData.h"
+#include "IPLAllRounder.h"
 #include "../libraries/csv.h"
 using namespace std;
 
 enum SortType{
     BATSMAN_AVG = 1, BATTING_STRIKE_RATE, SIX_FOUR, STRIKE_RATE_AND_SIX_FOUR, AVERAGE_AND_STRIKE_RATE,
     MAX_RUNS_AND_AVERAGE, BOWLING_AVG, BOWLING_STRIKE_RATE, BOWLING_ECONOMY_RATE, 
-    STRIKE_RATE_5W_AND_4W, BOWLING_AVG_AND_STRIKE_RATE, BOWLING_WICKET_AND_AVG
+    STRIKE_RATE_5W_AND_4W, BOWLING_AVG_AND_STRIKE_RATE, BOWLING_WICKET_AND_AVG,
+    BATTING_AND_BOWLING_AVG
 }; 
 
 class IPLAnalyser{
@@ -19,8 +21,10 @@ class IPLAnalyser{
     public :   
        vector<IPLMostRuns> loadBatsmanCSVData(string);
        vector<IPLMostWickets> loadBowlersCSVData(string);
+       vector<IPLAllRounder> loadAllRounderData(vector<IPLMostRuns>, vector<IPLMostWickets>);
        list<IPLMostRuns> getBatsmanSortedList(vector<IPLMostRuns>, SortType);
        list<IPLMostWickets> getBowlersSortedList(vector<IPLMostWickets>, SortType);
+       list<IPLAllRounder> getAllRounderSortedList(vector<IPLAllRounder>, SortType);
 };
 
 vector<vector<string>> IPLAnalyser :: readCSVData(string filePath){
@@ -57,6 +61,7 @@ vector<IPLMostWickets> IPLAnalyser ::loadBowlersCSVData(string filePath){
        bowlersDetails.playerName = csvdatalist[i][1];
        bowlersDetails.strikeRate = stod(csvdatalist[i][10]);
        bowlersDetails.wickets = stoi(csvdatalist[i][6]);
+       bowlersDetails.runs = stoi(csvdatalist[i][5]);
        bowlersList.push_back(bowlersDetails);
    }
 
@@ -141,5 +146,37 @@ list<IPLMostWickets> IPLAnalyser ::getBowlersSortedList(vector<IPLMostWickets> b
             return (firstBowler.wickets  > secondBowler.wickets) && (firstBowler.average < secondBowler.average); });
             break;
     }
+    return sortedList;
+}
+
+vector<IPLAllRounder> IPLAnalyser ::loadAllRounderData( vector<IPLMostRuns> battingList, vector<IPLMostWickets> bowlersList){
+    vector<IPLAllRounder> allRounderList;
+    for (int i = 0; i < battingList.size(); i++){
+        for (int j = 0; j < bowlersList.size(); j++){
+            if ( bowlersList[j].playerName == battingList[i].playerName ){
+                IPLAllRounder allRounderObj;
+                allRounderObj.playerName = bowlersList[j].playerName;
+                allRounderObj.bowlingAverage = bowlersList[j].average;
+                allRounderObj.battingAverage = battingList[i].average;
+                allRounderObj.run = bowlersList[j].runs;
+                allRounderObj.wicket = bowlersList[j].wickets;
+                allRounderList.push_back(allRounderObj);
+            }
+        }
+    }
+    return allRounderList;
+}
+
+list<IPLAllRounder> IPLAnalyser ::getAllRounderSortedList(vector<IPLAllRounder> allRounderList, SortType sortType){
+    list<IPLAllRounder> sortedList(allRounderList.begin(), allRounderList.end());
+
+    switch (sortType){
+        case BATTING_AND_BOWLING_AVG :
+        sortedList.sort([](const IPLAllRounder firstPlayer, const IPLAllRounder secondPlayer)
+            {return ((firstPlayer.bowlingAverage != 0 && secondPlayer.bowlingAverage != 0)
+             ? firstPlayer.bowlingAverage < secondPlayer.bowlingAverage : bool()) &&
+                firstPlayer.battingAverage > secondPlayer.battingAverage; });
+            break;
+        }
     return sortedList;
 }
