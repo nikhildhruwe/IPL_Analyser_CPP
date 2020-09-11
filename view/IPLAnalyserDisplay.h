@@ -39,8 +39,8 @@ void IPLAnalyserDisplay ::displayAllRoundersDetails(list<IPLAllRounder> allRound
     displayMessage(message);
     auto player = allRounderList.begin();
     for (int i = 0; i < 3; i++, player++){
-        cout << "Player Name  : " << player->playerName << "\nBatting Average : " << player->battingAverage << "\nBowling Average : "
-        << player->bowlingAverage<<  "\nWickets      : " << player->wicket << "\n" << endl;
+        cout << "Player Name     : " << player->playerName << "\nBatting Average : " << player->battingAverage << "\nBowling Average : "
+        << player->bowlingAverage<<  "\nWickets         : " << player->wicket  << "\nRuns            : " <<  player->run << "\n" << endl;
     }
 }
 
@@ -52,7 +52,7 @@ int IPLAnalyserDisplay ::getSortChoice(){
     "\n5.Best average along with highest strike rate.\n6.Maximum runs with best average.\n7.Top Bowling average."
     "\n8.Top bowling strike rate.\n9.Top bowling economy rate.\n10.Best economy with highest 5 wickets and 4 wickets."
     "\n11.Best bowling average with strike rate.\n12.Best Bowlers Wicket and average."
-    "\n13.Batting and Bowling Averaegs.\n14.Exit." << endl;
+    "\n13.Batting and Bowling Averages.\n14.Highest Runs and Wickets.\n15.Exit." << endl;
     cout << "Select choice : ";
     cin >> choice;
     return choice;
