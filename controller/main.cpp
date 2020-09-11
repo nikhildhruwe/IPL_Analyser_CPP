@@ -45,7 +45,7 @@ void IPLController ::displayOptionsToSort(){
         case BATTING_STRIKE_RATE :
             {
                 batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, BATTING_STRIKE_RATE);
-                string message = "Top strike rate : ";
+                string message = "Top Strike Rate : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             } 
             break;
@@ -59,21 +59,21 @@ void IPLController ::displayOptionsToSort(){
         case STRIKE_RATE_AND_SIX_FOUR :
             {
                 batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, STRIKE_RATE_AND_SIX_FOUR);
-                string message = "Top strike rate along with highest 6s and 4s : ";
+                string message = "Top Strike Rate Along With Highest 6s And 4s : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
         case AVERAGE_AND_STRIKE_RATE :
             {
                 batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, AVERAGE_AND_STRIKE_RATE);
-                string message = "Top average along with strike rate : ";
+                string message = "Top Average Along With Strike Rate : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
         case MAX_RUNS_AND_AVERAGE :
             {
                 batsmanList =  iplAnalyserObj.getBatsmanSortedList(batsmanDetailsList, MAX_RUNS_AND_AVERAGE);
-                string message = "Maximum runs with best average : ";
+                string message = "Maximum Runs With Best Average : ";
                 iplDisplayObj.displayBatsmanDetails(batsmanList, message);
             }
             break;
@@ -101,11 +101,18 @@ void IPLController ::displayOptionsToSort(){
         case STRIKE_RATE_5W_AND_4W :
              {
                 bowlersList =  iplAnalyserObj.getBowlersSortedList(bowlersDetailsList, STRIKE_RATE_5W_AND_4W);
-                string message = "Top Bowling Economy Rate : ";
+                string message = "Top Bowling Strike Rate With 5W And 4W : ";
                 iplDisplayObj.displayBowlersDetails(bowlersList, message);
             }
             break;
-        case 11 :
+        case BOWLING_AVG_AND_STRIKE_RATE :
+             {
+                bowlersList =  iplAnalyserObj.getBowlersSortedList(bowlersDetailsList, BOWLING_AVG_AND_STRIKE_RATE);
+                string message = "Top Bowling Average With Strike Rate : ";
+                iplDisplayObj.displayBowlersDetails(bowlersList, message);
+            }
+            break;
+        case 12 :
             status = false;
             break;
         default:
